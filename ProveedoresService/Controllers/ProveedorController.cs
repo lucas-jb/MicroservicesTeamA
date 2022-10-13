@@ -18,13 +18,13 @@ namespace ProveedoresService.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(int id)
         {
-            var customer = await proveedoresProvider.GetAsync(id);
+            var proveedor = await proveedoresProvider.GetAsync(id);
 
-            if (customer != null)
+            if (proveedor != null)
             {
 
 
-                return Ok(customer);
+                return Ok(proveedor);
 
             }
 

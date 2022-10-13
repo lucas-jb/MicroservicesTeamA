@@ -1,4 +1,4 @@
-﻿namespace ComprasService.Models
+﻿namespace PruebaSearch.Models
 {
     public class OrderItem
     {
@@ -7,6 +7,7 @@
         public string ProductoId { get; set; }
         public int Quantity { get; set; }
         public double Price { get; set; }
+        public Producto Producto { get; set; }
 
     }
 }
