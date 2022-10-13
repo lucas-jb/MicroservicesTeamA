@@ -7,6 +7,6 @@
         public String tipo { get; set; }
         public String Ciudad { get; set; }
 
-
+        //sss
     }
 }
