@@ -16,7 +16,7 @@ namespace ProveedoresService.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAsync(String id)
+        public async Task<IActionResult> GetAsync(int id)
         {
             var customer = await proveedoresProvider.GetAsync(id);
 
