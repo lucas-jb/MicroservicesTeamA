@@ -1,7 +1,7 @@
 ﻿using ComprasService.DAL;
 using Microsoft.AspNetCore.Mvc;
 
-namespace lil.Sales.Controllers
+namespace ComprasService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
