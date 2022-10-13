@@ -13,7 +13,7 @@ namespace ProveedoresService.DAL
             repository.Add(new Proveedor { ID = 6, Ciudad = "Zaragoza", nombre = "Hardware SL", tipo = "Componentes Informaticos" });
             repository.Add(new Proveedor { ID = 7, Ciudad = "Gares", nombre = "Carniceria Gabaran", tipo = "Alimentacion" });
             repository.Add(new Proveedor { ID = 8, Ciudad = "Valencia", nombre = "Muebles Valencia", tipo = "Muebles Hogar" });
-            repository.Add(new Proveedor { ID = 19, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Tecnologia" });
+            repository.Add(new Proveedor { ID = 9, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Tecnologia" });
 
 
 
