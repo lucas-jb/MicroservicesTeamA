@@ -8,13 +8,13 @@ namespace ProveedoresService.DAL
         public ProveedoresProvider()
         {
             repository.Add(new Proveedor { ID = 1, Ciudad = "Pamplona", nombre = "MediaMarkt Navarra", tipo = "Tecnologia" });
-            repository.Add(new Proveedor { ID = 4, Ciudad = "Paris", nombre = "Frutas Manolo", tipo = "Alimentacion" });
-            repository.Add(new Proveedor { ID = 5, Ciudad = "Barcelona", nombre = "OES Tecnologia", tipo = "Tecnologia" });
-            repository.Add(new Proveedor { ID = 6, Ciudad = "Zaragoza", nombre = "Hardware SL", tipo = "Componentes Informaticos" });
-            repository.Add(new Proveedor { ID = 7, Ciudad = "Gares", nombre = "Carniceria Gabaran", tipo = "Alimentacion" });
-            repository.Add(new Proveedor { ID = 8, Ciudad = "Valencia", nombre = "Muebles Valencia", tipo = "Muebles Hogar" });
-            repository.Add(new Proveedor { ID = 9, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Tecnologia" });
-            repository.Add(new Proveedor { ID = 10, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Informatica" });
+            repository.Add(new Proveedor { ID = 2, Ciudad = "Paris", nombre = "Frutas Manolo", tipo = "Alimentacion" });
+            repository.Add(new Proveedor { ID = 3, Ciudad = "Barcelona", nombre = "OES Tecnologia", tipo = "Tecnologia" });
+            repository.Add(new Proveedor { ID = 4, Ciudad = "Zaragoza", nombre = "Hardware SL", tipo = "Componentes Informaticos" });
+            repository.Add(new Proveedor { ID = 5, Ciudad = "Gares", nombre = "Carniceria Gabaran", tipo = "Alimentacion" });
+            repository.Add(new Proveedor { ID = 6, Ciudad = "Valencia", nombre = "Muebles Valencia", tipo = "Muebles Hogar" });
+            repository.Add(new Proveedor { ID = 7, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Tecnologia" });
+            repository.Add(new Proveedor { ID = 8, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Informatica" });
 
 
 
