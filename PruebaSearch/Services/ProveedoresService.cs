@@ -15,7 +15,7 @@ namespace PruebaSearch.Services
         public async Task<Proveedor?> GetAsync(string id)
         {
             var client = _httpClientFactory.CreateClient("proveedoresService");
-            var response = await client.GetAsync($"api/proveedores/{id}");
+            var response = await client.GetAsync($"api/proveedor/{id}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

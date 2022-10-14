@@ -13,9 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IProductosService, ProductosService>();
+builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
 
 builder.Services.AddHttpClient("proveedoresService", c =>
