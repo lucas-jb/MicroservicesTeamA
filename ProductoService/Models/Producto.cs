@@ -1,6 +1,6 @@
 ﻿namespace ProductoService.Models
 {
-    public class Product
+    public class Producto
     {
         public string Id { get; set; }
         public string Name { get; set; }

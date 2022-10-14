@@ -5,19 +5,19 @@ namespace ProductoService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductoController : ControllerBase
     {
-        private readonly IProductProvider _productsProvider;
+        private readonly IProductoProvider _productosProvider;
 
-        public ProductController(IProductProvider productsProvider) 
+        public ProductoController(IProductoProvider productosProvider) 
         {
-            this._productsProvider = productsProvider;
+            this._productosProvider = productosProvider;
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(string id)
         {
-            var result = await _productsProvider.GetAsync(id);
+            var result = await _productosProvider.GetAsync(id);
             if (result != null)
             {
                 return Ok(result);

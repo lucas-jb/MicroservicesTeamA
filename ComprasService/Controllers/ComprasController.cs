@@ -8,15 +8,15 @@ namespace ComprasService.Controllers
     public class ComprasController : ControllerBase
     {
         private readonly IComprasProvider _comprasProvider;
-        public ComprasController(IComprasProvider salesProvider)
+        public ComprasController(IComprasProvider comprasProvider)
         {
-            _comprasProvider = salesProvider;
+            _comprasProvider = comprasProvider;
         }
 
-        [HttpGet("{customerId}")]
-        public async Task<IActionResult> GetAsync(string customerId)
+        [HttpGet("{proveedorId}")]
+        public async Task<IActionResult> GetAsync(string proveedorId)
         {
-            var orders = await _comprasProvider.GetAsync(customerId);
+            var orders = await _comprasProvider.GetAsync(proveedorId);
             if (orders != null && orders.Any())
             {
                 return Ok(orders);

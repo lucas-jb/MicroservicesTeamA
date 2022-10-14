@@ -12,8 +12,8 @@ namespace ProductoService.Tests
         [TestMethod]
         public void GetAsyncReturnsOk()
         {
-            var productProvider = new ProductProvider();
-            var productController = new ProductController(productProvider);
+            var productProvider = new ProductoProvider();
+            var productController = new ProductoController(productProvider);
 
             var result = productController.GetAsync("1").Result;
 
@@ -24,8 +24,8 @@ namespace ProductoService.Tests
         [TestMethod]
         public void GetAsyncReturnsNotFound()
         {
-            var productProvider = new ProductProvider();
-            var productController = new ProductController(productProvider);
+            var productProvider = new ProductoProvider();
+            var productController = new ProductoController(productProvider);
 
             var result = productController.GetAsync("1000").Result;
 
