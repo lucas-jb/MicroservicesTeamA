@@ -12,7 +12,7 @@ namespace PruebaSearch.Services
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<Proveedor> GetAsync(string id)
+        public async Task<Proveedor?> GetAsync(string id)
         {
             var client = _httpClientFactory.CreateClient("proveedoresService");
             var response = await client.GetAsync($"api/proveedor/{id}");
@@ -27,5 +27,6 @@ namespace PruebaSearch.Services
 
             return null;
         }
+
     }
 }
