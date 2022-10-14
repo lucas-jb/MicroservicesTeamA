@@ -17,6 +17,8 @@ builder.Services.AddScoped<IProductosService, ProductosService>();
 builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
 
+
+
 builder.Services.AddHttpClient("proveedoresService", c =>
 {
     c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);

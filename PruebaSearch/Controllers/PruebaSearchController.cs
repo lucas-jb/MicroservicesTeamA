@@ -1,5 +1,6 @@
 ﻿using PruebaSearch.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.ObjectModel;
 
 namespace PruebaSearch.Controllers
 {
@@ -44,6 +45,49 @@ namespace PruebaSearch.Controllers
                 {
                     Proveedor = proveedor,
                     Compras = compras
+                };
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet("proveedores/{proveedorId}/{month}")]
+        public async Task<IActionResult> SearchMonthAsync(string proveedorId, int month)
+        {
+            if (string.IsNullOrWhiteSpace(proveedorId))
+            {
+                return BadRequest();
+            }
+            try
+            {
+                var proveedor = await _proveedoresService.GetAsync(proveedorId);
+                var compras = await _comprasService.GetAsync(proveedorId);
+
+                var compras2 = new Collection<Models.Order>();
+
+                foreach (var compra in compras)
+                {
+                    if (compra.OrderDate.Month.Equals(month))
+                    {
+                        compras2.Add(compra);
+                    }
+                        foreach (var item in compra.Items)
+                        {
+                            var product = await _productosService.GetAsync(item.ProductoId);
+
+                            item.Producto = product;
+                        }
+                    
+                }
+                
+                var result = new
+                {
+                    Proveedor = proveedor,
+                    Compras = compras2
                 };
                 return Ok(result);
             }
