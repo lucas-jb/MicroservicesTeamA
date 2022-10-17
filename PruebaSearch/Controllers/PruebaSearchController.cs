@@ -75,13 +75,13 @@ namespace PruebaSearch.Controllers
                     {
                         compras2.Add(compra);
                     }
-                        foreach (var item in compra.Items)
-                        {
-                            var product = await _productosService.GetAsync(item.ProductoId);
+                    foreach (var item in compra.Items)
+                    {
+                        var product = await _productosService.GetAsync(item.ProductoId);
 
-                            item.Producto = product;
-                        }
-                    
+                        item.Producto = product;
+                    }
+
                 }
                 
                 var result = new
