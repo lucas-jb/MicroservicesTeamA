@@ -4,7 +4,6 @@ using PruebaSearch.Controllers;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Models;
 using System.Net;
-using System.Runtime.InteropServices;
 
 namespace PruebaSearchTests.PruebaSearchControllerTest
 {
@@ -73,8 +72,12 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
             _MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).Throws(new Exception());
             
             var result = await PruebasSearchController.SearchAsync("1");
+
             // Comprobar como es el assert de que ha lanzado una excepcion
-            // Assert.ThrowsException(result);
+            // FALTA COMPRAR QUE LANZA UNA EXCEPCION ! ! !
+
+            Assert.ThrowsException<Exception>(()=> result);
+
         }
     }
 }
