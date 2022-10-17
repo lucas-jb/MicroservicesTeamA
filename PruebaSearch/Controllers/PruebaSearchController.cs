@@ -97,5 +97,36 @@ namespace PruebaSearch.Controllers
                 throw;
             }
         }
+
+        [HttpGet("proveedores/WithOutPurchases")]
+        public async Task<IActionResult> SearchProviderWithOutPurchasesAsync()
+        {
+           
+            try
+            {
+                var proveedores = await _proveedoresService.GetAllAsync();
+
+               // var compras = await _comprasService.GetAsync(proveedorId);
+
+                var compras2 = new Collection<Models.Order>();
+
+                var proveedoresSinCompras = new Collection<Models.Proveedor>();
+
+                foreach (var proveedor in proveedores)
+                {
+                    var compras = await _comprasService.GetAsync(proveedor.ID.ToString());
+                    if (compras == null)
+                    {
+                        proveedoresSinCompras.Add(proveedor);
+                    }
+                }
+                return Ok(proveedoresSinCompras);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
