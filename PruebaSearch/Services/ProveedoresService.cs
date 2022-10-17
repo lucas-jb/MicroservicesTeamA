@@ -28,5 +28,21 @@ namespace PruebaSearch.Services
             return null;
         }
 
+        public async Task<List<Proveedor?>> GetAllAsync()
+        {
+            var client = _httpClientFactory.CreateClient("proveedoresService");
+            var response = await client.GetAsync($"api/proveedor/GetAll");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                var proveedores = JsonConvert.DeserializeObject<List<Proveedor>>(content);
+
+                return proveedores;
+            }
+
+            return null;
+        }
+
     }
 }
