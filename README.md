@@ -18,5 +18,5 @@ La solución está formada por cuatro proyectos:
 
 ## Descripción del funcionamiento
 
-1 Mediante repositorios Fake, los servicios Productos, Proveedores y compras, generan instancias de cada uno de ellos.
-2 El proyecto PruebaSearch realiza las peticiones a los otros servicios y recupera los datos.
+1. Mediante repositorios Fake, los servicios Productos, Proveedores y compras, generan instancias de cada uno de ellos.
+2. El proyecto PruebaSearch realiza las peticiones a los otros servicios y recupera los datos.
