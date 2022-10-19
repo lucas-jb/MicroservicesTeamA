@@ -1,5 +1,6 @@
 using Polly;
 using Polly.CircuitBreaker;
+using PruebaSearch;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
 
@@ -20,63 +21,53 @@ builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IProductosService, ProductosService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
 
-try
-{
-    Action<Exception, TimeSpan> onBreak = (exception, timespan) => {
-        Console.WriteLine("Conexion rota");
-        Console.WriteLine($"Tipo de excepcion : {exception.Message}");        
-    };
+Action<Exception, TimeSpan> onBreak = (exception, timespan) => {
+    Console.WriteLine("Conexion rota");
+    Console.WriteLine($"Tipo de excepcion : {exception.Message}");        
+};
 
-    Action onReset = () => {
-        Console.WriteLine("Reseteando el intento de conexion"); 
-    };
+Action onReset = () => {
+    Console.WriteLine("Reseteando el intento de conexion"); 
+};
 
 var breakerProvedores = await Policy
-        .Handle<Exception>()
-        .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
-        .ExecuteAndCaptureAsync(async () =>
+    .Handle<Exception>()
+    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+    .ExecuteAndCaptureAsync(async () =>
+        {
+            builder.Services.AddHttpClient("proveedoresService", c =>
             {
-                builder.Services.AddHttpClient("proveedoresService", c =>
-                {
-                    c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+                c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
 
-                });
             });
+        });
 
 var breakerProductos = await Policy
-        .Handle<Exception>()
-        .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
-        .ExecuteAndCaptureAsync(async () =>
-        {
+    .Handle<Exception>()
+    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+    .ExecuteAndCaptureAsync(async () =>
+    {
             
-            builder.Services.AddHttpClient("productosService", c =>
-            {
-                c.BaseAddress = new Uri(Configuration["Services:Productos"]);
+        builder.Services.AddHttpClient("productosService", c =>
+        {
+            c.BaseAddress = new Uri(Configuration["Services:Productos"]);
 
-            });
-           
         });
-    var breakerCompras = await Policy
-        .Handle<Exception>()
-        .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
-        .ExecuteAndCaptureAsync(async () =>
-            {
+           
+    });
+
+var breakerCompras = await Policy
+    .Handle<Exception>()
+    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+    .ExecuteAndCaptureAsync(async () =>
+        {
                 
-                builder.Services.AddHttpClient("comprasService", c =>
-                {
-                    c.BaseAddress = new Uri(Configuration["Services:Compras"]);
+            builder.Services.AddHttpClient("comprasService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["Services:Compras"]);
 
-                });
             });
-
-
-
-}
-catch (Exception e)
-{
-    throw e;
-}
-
+        });
 
 
 
@@ -89,6 +80,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseGlobalExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
