@@ -1,6 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using ProductoService.DAL;
+using ProductoService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//builder.Services.AddDbContext<ProductoContext>();
 
 // Add services to the container.
 
@@ -8,6 +13,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+//builder.Services.AddScoped<IProductoProvider, ProductoProviderEF>();
 builder.Services.AddScoped<IProductoProvider, ProductoProvider>();
 
 var app = builder.Build();
