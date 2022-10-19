@@ -1,3 +1,4 @@
+using Polly;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
 
@@ -18,23 +19,66 @@ builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IProductosService, ProductosService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
 
-builder.Services.AddHttpClient("proveedoresService", c =>
+try
 {
-    c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+    Action<Exception, TimeSpan> onBreak = (exception, timespan) => {
+        Console.WriteLine("Conexion rota");
+        Console.WriteLine($"Tipo de excepcion : {exception.Message}");        
+    };
 
-});
+    Action onReset = () => {
+        Console.WriteLine("Reseteando el intento de conexion"); 
+    };
 
-builder.Services.AddHttpClient("productosService", c =>
+    var breakerProvedores = await Policy
+        .Handle<Exception>()
+        .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+        .ExecuteAndCaptureAsync(async () =>
+            {
+                builder.Services.AddHttpClient("proveedoresService", c =>
+                {
+                    c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+
+                });               
+            });
+
+    var breakerProductos = await Policy
+        .Handle<Exception>()
+        .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+        .ExecuteAndCaptureAsync(async () =>
+        {
+            
+            builder.Services.AddHttpClient("productosService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["Services:Productos"]);
+
+            });
+           
+        });
+    var breakerCompras = await Policy
+        .Handle<Exception>()
+        .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+        .ExecuteAndCaptureAsync(async () =>
+            {
+                
+                builder.Services.AddHttpClient("comprasService", c =>
+                {
+                    c.BaseAddress = new Uri(Configuration["Services:Compras"]);
+
+                });
+            });
+
+
+
+}
+catch (Exception e)
 {
-    c.BaseAddress = new Uri(Configuration["Services:Productos"]);
+    throw e;
+}
 
-});
 
-builder.Services.AddHttpClient("comprasService", c =>
-{
-    c.BaseAddress = new Uri(Configuration["Services:Compras"]);
 
-});
+
 
 var app = builder.Build();
 
