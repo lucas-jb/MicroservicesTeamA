@@ -1,4 +1,5 @@
 using Polly;
+using Polly.CircuitBreaker;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
 
@@ -30,7 +31,7 @@ try
         Console.WriteLine("Reseteando el intento de conexion"); 
     };
 
-    var breakerProvedores = await Policy
+var breakerProvedores = await Policy
         .Handle<Exception>()
         .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
         .ExecuteAndCaptureAsync(async () =>
@@ -39,10 +40,10 @@ try
                 {
                     c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
 
-                });               
+                });
             });
 
-    var breakerProductos = await Policy
+var breakerProductos = await Policy
         .Handle<Exception>()
         .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
         .ExecuteAndCaptureAsync(async () =>
