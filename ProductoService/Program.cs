@@ -5,7 +5,7 @@ using ProductoService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<ProductoContext>();
+
 
 // Add services to the container.
 
@@ -14,9 +14,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<ProductoContext>();
 
-//builder.Services.AddScoped<IProductoProvider, ProductoProviderEF>();
-builder.Services.AddScoped<IProductoProvider, ProductoProvider>();
+builder.Services.AddScoped<IProductoProvider, ProductoProviderEF>();
+//builder.Services.AddScoped<IProductoProvider, ProductoProvider>();
 
 var app = builder.Build();
 
