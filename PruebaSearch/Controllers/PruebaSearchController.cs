@@ -31,22 +31,36 @@ namespace PruebaSearch.Controllers
                 var proveedor = await _proveedoresService.GetAsync(proveedorId);
                 var compras = await _comprasService.GetAsync(proveedorId);
 
-                foreach (var compra in compras)
+                if (compras != null)
                 {
-                    foreach (var item in compra.Items)
+                    foreach (var compra in compras)
                     {
-                        var product = await _productosService.GetAsync(item.ProductoId);
+                        foreach (var item in compra.Items)
+                        {
+                            var product = await _productosService.GetAsync(item.ProductoId);
 
-                        item.Producto = product;
+                            item.Producto = product;
+                        }
                     }
-                }
 
-                var result = new
+                    var result = new
+                    {
+                        Proveedor = proveedor,
+                        Compras = compras
+                    };
+                    return Ok(result);
+
+
+
+                }
+                var result2 = new
                 {
                     Proveedor = proveedor,
-                    Compras = compras
+                    Compras = "No hay datos"
                 };
-                return Ok(result);
+                return Ok(result2);
+
+
             }
             catch (Exception)
             {
