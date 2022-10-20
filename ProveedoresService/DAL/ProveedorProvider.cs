@@ -7,19 +7,19 @@ namespace ProveedoresService.DAL
         private readonly List<Proveedor> repository = new List<Proveedor>();
         public ProveedorProvider()
         {
-            repository.Add(new Proveedor { ID = 1, Ciudad = "Pamplona", nombre = "MediaMarkt Navarra", tipo = "Tecnologia" });
-            repository.Add(new Proveedor { ID = 2, Ciudad = "Paris", nombre = "Frutas Manolo", tipo = "Alimentacion" });
-            repository.Add(new Proveedor { ID = 3, Ciudad = "Barcelona", nombre = "OES Tecnologia", tipo = "Tecnologia" });
-            repository.Add(new Proveedor { ID = 4, Ciudad = "Zaragoza", nombre = "Hardware SL", tipo = "Componentes Informaticos" });
-            repository.Add(new Proveedor { ID = 5, Ciudad = "Gares", nombre = "Carniceria Gabaran", tipo = "Alimentacion" });
-            repository.Add(new Proveedor { ID = 6, Ciudad = "Valencia", nombre = "Muebles Valencia", tipo = "Muebles Hogar" });
-            repository.Add(new Proveedor { ID = 7, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Tecnologia" });
-            repository.Add(new Proveedor { ID = 8, Ciudad = "Madrid", nombre = "MediaMarkt Madrid", tipo = "Informatica" });
+            repository.Add(new Proveedor { Id = 1, City = "Pamplona", Name = "MediaMarkt Navarra", Type = "Tecnologia" });
+            repository.Add(new Proveedor { Id = 2, City = "Paris", Name = "Frutas Manolo", Type = "Alimentacion" });
+            repository.Add(new Proveedor { Id = 3, City = "Barcelona", Name = "OES Tecnologia", Type = "Tecnologia" });
+            repository.Add(new Proveedor { Id = 4, City = "Zaragoza", Name = "Hardware SL", Type = "Componentes Informaticos" });
+            repository.Add(new Proveedor { Id = 5, City = "Gares", Name = "Carniceria Gabaran", Type = "Alimentacion" });
+            repository.Add(new Proveedor { Id = 6, City = "Valencia", Name = "Muebles Valencia", Type = "Muebles Hogar" });
+            repository.Add(new Proveedor { Id = 7, City = "Madrid", Name = "MediaMarkt Madrid", Type = "Tecnologia" });
+            repository.Add(new Proveedor { Id = 8, City = "Madrid", Name = "MediaMarkt Madrid", Type = "Informatica" });
         }
 
         public async Task<Proveedor> GetAsync(int id)
         {
-            var proveedor = repository.FirstOrDefault(p => p.ID == id);
+            var proveedor = repository.FirstOrDefault(p => p.Id == id);
             return await Task.Run(() => proveedor);
 
         }
