@@ -1,8 +1,11 @@
 using Polly;
 using Polly.CircuitBreaker;
+using Polly.Retry;
 using PruebaSearch;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
+using System;
+using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,17 +33,25 @@ Action onReset = () => {
     Console.WriteLine("Reseteando el intento de conexion"); 
 };
 
-var breakerProvedores = await Policy
-    .Handle<Exception>()
-    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
-    .ExecuteAndCaptureAsync(async () =>
-        {
-            builder.Services.AddHttpClient("proveedoresService", c =>
-            {
-                c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+//privado solo lectura RetryPolicy _retryPolicy;
 
-            });
+//Remaining Code has been removed for readability
+
+        builder.Services.AddHttpClient("proveedoresService", c =>
+        {
+            
+            c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+            Console.WriteLine("reintento");
         });
+   
+
+
+//builder.Services.AddHttpClient("proveedoresService", c =>
+//            {
+//                c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+
+//            });
+
 
 var breakerProductos = await Policy
     .Handle<Exception>()
@@ -81,7 +92,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseGlobalExceptionMiddleware();
+//app.UseGlobalExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
