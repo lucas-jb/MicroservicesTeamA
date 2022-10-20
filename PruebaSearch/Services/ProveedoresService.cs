@@ -12,10 +12,10 @@ namespace PruebaSearch.Services
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<Proveedor> GetAsync(string id)
+        public async Task<Proveedor?> GetAsync(string id)
         {
             var client = _httpClientFactory.CreateClient("proveedoresService");
-            var response = await client.GetAsync($"api/proveedores/{id}");
+            var response = await client.GetAsync($"api/proveedor/{id}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -27,5 +27,22 @@ namespace PruebaSearch.Services
 
             return null;
         }
+
+        public async Task<List<Proveedor?>> GetAllAsync()
+        {
+            var client = _httpClientFactory.CreateClient("proveedoresService");
+            var response = await client.GetAsync($"api/proveedor/GetAll");
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+
+                var proveedores = JsonConvert.DeserializeObject<List<Proveedor>>(content);
+
+                return proveedores;
+            }
+
+            return null;
+        }
+
     }
 }

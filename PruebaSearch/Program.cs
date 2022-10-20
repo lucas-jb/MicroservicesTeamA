@@ -6,7 +6,7 @@ using PruebaSearch.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Configuración para el ejercicio
+//ConfiguraciÃ³n para el ejercicio
 ConfigurationManager Configuration = builder.Configuration;
 
 // Add services to the container.
@@ -16,10 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IProductosService, ProductosService>();
+builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
+
 
 Action<Exception, TimeSpan> onBreak = (exception, timespan) => {
     Console.WriteLine("Conexion rota");
@@ -72,6 +72,7 @@ var breakerCompras = await Policy
 
 
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -89,3 +90,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//prueba3
