@@ -21,6 +21,18 @@ namespace ComprasService.DAL
             });
             repo.Add(new Order
             {
+                Id = "0001",
+                ProveedorId = "1",
+                OrderDate = DateTime.Now.AddMonths(-1),
+                Total = 100,
+                Items = new List<OrderItem>()
+                {
+                    new OrderItem() {OrderId = "0002", Id = 2, Price = 50, ProductoId = "53", Quantity = 2},
+                    new OrderItem() {OrderId = "0003", Id = 3, Price = 80, ProductoId = "74", Quantity = 2}
+                }
+            });
+            repo.Add(new Order
+            {
                 Id = "0002",
                 ProveedorId = "2",
                 OrderDate = DateTime.Now.AddMonths(-1),

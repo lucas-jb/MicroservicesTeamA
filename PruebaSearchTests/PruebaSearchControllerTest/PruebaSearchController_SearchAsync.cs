@@ -57,25 +57,27 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
         [TestMethod]
         public async Task SearchAsyn_IsNotNullOrWhiteSpace_ThrowsException()
         {
-            IList<Order> mockList = new List<Order>()
-            {
-            new Order()
-                {
-                Items = new List<OrderItem>()
-                    {
-                        new OrderItem()
-                    }
-                }
-            };
-            _MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).Throws(new Exception());
+            //IList<Order> mockList = new List<Order>()
+            //{
+            //new Order()
+            //    {
+            //    Items = new List<OrderItem>()
+            //        {
+            //            new OrderItem()
+            //        }
+            //    }
+            //};
 
+            //var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
+            
+            //_MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).Throws(new Exception());
+            
+            //var result = await PruebasSearchController.SearchAsync("1");
 
-            var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
-            
-            
-            
-            var result = await PruebasSearchController.SearchAsync("1");
-         
+            //// Comprobar como es el assert de que ha lanzado una excepcion
+            //// FALTA COMPRAR QUE LANZA UNA EXCEPCION ! ! !
+
+            //Assert.ThrowsException<Exception>(()=> result);
 
             // Comprobar como es el assert de que ha lanzado una excepcion
             Assert.ThrowsException(result);

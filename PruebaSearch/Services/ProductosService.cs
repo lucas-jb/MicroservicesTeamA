@@ -16,7 +16,7 @@ namespace PruebaSearch.Services
         {
             var client = _httpClientFactory.CreateClient("productosService");
 
-            var response = await client.GetAsync($"api/productos/{id}");
+            var response = await client.GetAsync($"api/producto/{id}");
 
             if (response.IsSuccessStatusCode)
             {

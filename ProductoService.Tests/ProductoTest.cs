@@ -15,7 +15,7 @@ namespace ProductoService.Tests
             var productProvider = new ProductoProvider();
             var productController = new ProductoController(productProvider);
 
-            var result = productController.GetAsync("1").Result;
+            var result = productController.GetAsync(1).Result;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(OkObjectResult));
@@ -27,7 +27,7 @@ namespace ProductoService.Tests
             var productProvider = new ProductoProvider();
             var productController = new ProductoController(productProvider);
 
-            var result = productController.GetAsync("1000").Result;
+            var result = productController.GetAsync(1000).Result;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));
