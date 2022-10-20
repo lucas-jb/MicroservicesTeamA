@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProveedoresService.DAL;
+using System.Collections.ObjectModel;
+using System;
 
 namespace ProveedoresService.Controllers
 {
@@ -25,6 +27,24 @@ namespace ProveedoresService.Controllers
 
 
                 return Ok(proveedor);
+
+            }
+
+            return NotFound();
+
+
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            var proveedores = await proveedoresProvider.GetAllAsync();
+
+            if (proveedores != null)
+            {
+               
+
+                return Ok(proveedores);
 
             }
 

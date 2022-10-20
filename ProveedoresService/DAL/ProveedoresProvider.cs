@@ -23,5 +23,12 @@ namespace ProveedoresService.DAL
             return await Task.Run(() => proveedor);
 
         }
+
+        public async Task<List<Proveedor>> GetAllAsync()
+        {
+            var proveedores = repository.ToList();
+            return await Task.Run(() => proveedores);
+
+        }
     }
 }
