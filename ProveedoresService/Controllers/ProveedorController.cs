@@ -42,7 +42,7 @@ namespace ProveedoresService.Controllers
 
             if (proveedores != null)
             {
-               
+
 
                 return Ok(proveedores);
 
