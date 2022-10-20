@@ -10,7 +10,7 @@ namespace ProveedoresServices.Tests
         [TestMethod]
         public void GetAsyncReturnsOk()
         {
-            var proveedorProvider = new ProveedoresProvider();
+            var proveedorProvider = new ProveedorProvider();
             var provedorController = new ProveedorController(proveedorProvider);
             var result = provedorController.GetAsync(1).Result;
 
@@ -22,7 +22,7 @@ namespace ProveedoresServices.Tests
         [TestMethod]
         public void GetAsyncReturnsNotFound()
         {
-            var proveedorProvider = new ProveedoresProvider();
+            var proveedorProvider = new ProveedorProvider();
             var provedorController = new ProveedorController(proveedorProvider);
             var result = provedorController.GetAsync(1550).Result;
 

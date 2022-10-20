@@ -2,10 +2,10 @@
 
 namespace ProveedoresService.DAL
 {
-    public class ProveedoresProvider : IProovedoresProvider
+    public class ProveedorProvider : IProveedorProvider
     {
         private readonly List<Proveedor> repository = new List<Proveedor>();
-        public ProveedoresProvider()
+        public ProveedorProvider()
         {
             repository.Add(new Proveedor { ID = 1, Ciudad = "Pamplona", nombre = "MediaMarkt Navarra", tipo = "Tecnologia" });
             repository.Add(new Proveedor { ID = 2, Ciudad = "Paris", nombre = "Frutas Manolo", tipo = "Alimentacion" });
