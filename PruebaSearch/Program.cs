@@ -1,9 +1,12 @@
+using Polly;
+using Polly.CircuitBreaker;
+using PruebaSearch;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Configuración para el ejercicio
+//ConfiguraciÃ³n para el ejercicio
 ConfigurationManager Configuration = builder.Configuration;
 
 // Add services to the container.
@@ -18,24 +21,57 @@ builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
 
 
+Action<Exception, TimeSpan> onBreak = (exception, timespan) => {
+    Console.WriteLine("Conexion rota");
+    Console.WriteLine($"Tipo de excepcion : {exception.Message}");        
+};
 
-builder.Services.AddHttpClient("proveedoresService", c =>
-{
-    c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+Action onReset = () => {
+    Console.WriteLine("Reseteando el intento de conexion"); 
+};
 
-});
+var breakerProvedores = await Policy
+    .Handle<Exception>()
+    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+    .ExecuteAndCaptureAsync(async () =>
+        {
+            builder.Services.AddHttpClient("proveedoresService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
 
-builder.Services.AddHttpClient("productosService", c =>
-{
-    c.BaseAddress = new Uri(Configuration["Services:Productos"]);
+            });
+        });
 
-});
+var breakerProductos = await Policy
+    .Handle<Exception>()
+    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+    .ExecuteAndCaptureAsync(async () =>
+    {
+            
+        builder.Services.AddHttpClient("productosService", c =>
+        {
+            c.BaseAddress = new Uri(Configuration["Services:Productos"]);
 
-builder.Services.AddHttpClient("comprasService", c =>
-{
-    c.BaseAddress = new Uri(Configuration["Services:Compras"]);
+        });
+           
+    });
 
-});
+var breakerCompras = await Policy
+    .Handle<Exception>()
+    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
+    .ExecuteAndCaptureAsync(async () =>
+        {
+                
+            builder.Services.AddHttpClient("comprasService", c =>
+            {
+                c.BaseAddress = new Uri(Configuration["Services:Compras"]);
+
+            });
+        });
+
+
+
+
 
 var app = builder.Build();
 
@@ -45,6 +81,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseGlobalExceptionMiddleware();
 
 app.UseHttpsRedirection();
 
