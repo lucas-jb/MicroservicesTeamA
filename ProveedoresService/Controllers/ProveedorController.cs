@@ -10,8 +10,8 @@ namespace ProveedoresService.Controllers
     [ApiController]
     public class ProveedorController : ControllerBase
     {
-        private readonly IProovedoresProvider proveedoresProvider;
-        public ProveedorController(IProovedoresProvider proveedoresProvider)
+        private readonly IProveedorProvider proveedoresProvider;
+        public ProveedorController(IProveedorProvider proveedoresProvider)
         {
 
             this.proveedoresProvider = proveedoresProvider;

@@ -2,14 +2,10 @@
 
 namespace ProveedoresService.DAL
 {
-    public interface IProovedoresProvider
+    public interface IProveedorProvider
     {
         Task<Proveedor> GetAsync(int id);
 
         Task<List<Proveedor>> GetAllAsync();
     }
-
-   
-       
-
 }
