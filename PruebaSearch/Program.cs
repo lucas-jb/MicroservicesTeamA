@@ -29,7 +29,7 @@ builder.Services.AddHttpClient("proveedoresService", c =>
 {
 
     c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
-    Console.WriteLine("reintento");
+    
 });
 
 
