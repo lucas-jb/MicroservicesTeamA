@@ -11,7 +11,7 @@ using ProveedoresService.Data;
 namespace ProveedoresService.Migrations
 {
     [DbContext(typeof(ProveedorContext))]
-    [Migration("20221020122033_InitialCreate")]
+    [Migration("20221021093317_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
