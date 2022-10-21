@@ -24,61 +24,28 @@ builder.Services.AddScoped<IProveedoresService, ProveedoresService>();
 builder.Services.AddScoped<IComprasService, ComprasService>();
 
 
-Action<Exception, TimeSpan> onBreak = (exception, timespan) => {
-    Console.WriteLine("Conexion rota");
-    Console.WriteLine($"Tipo de excepcion : {exception.Message}");        
-};
 
-Action onReset = () => {
-    Console.WriteLine("Reseteando el intento de conexion"); 
-};
+builder.Services.AddHttpClient("proveedoresService", c =>
+{
 
-//privado solo lectura RetryPolicy _retryPolicy;
-
-//Remaining Code has been removed for readability
-
-        builder.Services.AddHttpClient("proveedoresService", c =>
-        {
-            
-            c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
-            Console.WriteLine("reintento");
-        });
-   
+    c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+    Console.WriteLine("reintento");
+});
 
 
-//builder.Services.AddHttpClient("proveedoresService", c =>
-//            {
-//                c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
+builder.Services.AddHttpClient("productosService", c =>
+{
+    c.BaseAddress = new Uri(Configuration["Services:Productos"]);
 
-//            });
+});
 
 
-var breakerProductos = await Policy
-    .Handle<Exception>()
-    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
-    .ExecuteAndCaptureAsync(async () =>
-    {
-            
-        builder.Services.AddHttpClient("productosService", c =>
-        {
-            c.BaseAddress = new Uri(Configuration["Services:Productos"]);
+builder.Services.AddHttpClient("comprasService", c =>
+{
+    c.BaseAddress = new Uri(Configuration["Services:Compras"]);
 
-        });
-           
-    });
+});
 
-var breakerCompras = await Policy
-    .Handle<Exception>()
-    .CircuitBreakerAsync(2, TimeSpan.FromMinutes(1), onBreak, onReset)
-    .ExecuteAndCaptureAsync(async () =>
-        {
-                
-            builder.Services.AddHttpClient("comprasService", c =>
-            {
-                c.BaseAddress = new Uri(Configuration["Services:Compras"]);
-
-            });
-        });
 
 
 

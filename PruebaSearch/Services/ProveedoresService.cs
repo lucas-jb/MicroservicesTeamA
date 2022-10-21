@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Azure;
+using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 using PruebaSearch.Interfaces;
@@ -31,18 +32,30 @@ namespace PruebaSearch.Services
 
             var client = _httpClientFactory.CreateClient("proveedoresService");
 
-            var response = await _retryPolicy.Execute(() => client.GetAsync($"api/proveedor/{id}"));
+            var response = new HttpResponseMessage();
+            await _retryPolicy.Execute(async () =>
+            {
+
+                var response = client.GetAsync($"api/proveedor/{id}");
+                Console.WriteLine("error");
+
+            });
+
 
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                var content = response.Content.ReadAsStringAsync();
 
-                var proveedor = JsonConvert.DeserializeObject<Proveedor>(content);
+                var proveedor = JsonConvert.DeserializeObject<Proveedor>(content.Result);
 
                 return proveedor;
             }
+            else
+            {
 
-            return null;
+                return null;
+            }
+
 
 
         }
