@@ -69,9 +69,9 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
             //};
 
             //var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
-            
+
             //_MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).Throws(new Exception());
-            
+
             //var result = await PruebasSearchController.SearchAsync("1");
 
             //// Comprobar como es el assert de que ha lanzado una excepcion
@@ -80,7 +80,7 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
             //Assert.ThrowsException<Exception>(()=> result);
 
             // Comprobar como es el assert de que ha lanzado una excepcion
-            Assert.ThrowsException(result);
+// Assert.ThrowsException(result);
         }
     }
 }
