@@ -16,7 +16,7 @@ namespace ComprasService.Tests
             var comprasProvider = new ComprasProvider();
             var comprasController = new ComprasController(comprasProvider);
 
-            var result = await comprasController.GetAsync("3");
+            var result = await comprasController.GetAsync(3);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(OkObjectResult));
@@ -28,7 +28,7 @@ namespace ComprasService.Tests
             var comprasProvider = new ComprasProvider();
             var comprasController = new ComprasController(comprasProvider);
 
-            var result = await comprasController.GetAsync("5");
+            var result = await comprasController.GetAsync(5);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(NotFoundResult));

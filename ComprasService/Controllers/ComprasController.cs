@@ -14,7 +14,7 @@ namespace ComprasService.Controllers
         }
 
         [HttpGet("{proveedorId}")]
-        public async Task<IActionResult> GetAsync(string proveedorId)
+        public async Task<IActionResult> GetAsync(int proveedorId)
         {
             var orders = await _comprasProvider.GetAsync(proveedorId);
             if (orders != null && orders.Any())

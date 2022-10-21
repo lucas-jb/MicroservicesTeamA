@@ -6,7 +6,7 @@ namespace ProveedoresService.DAL
 {
     public class ProveedorProviderEF : IProveedorProvider
     {
-        readonly DesingTimeProveedorContextFactory factoriaDeContextos = new();
+        readonly DesignTimeProveedorContextFactory factoriaDeContextos = new();
         private readonly ProveedorContext _context;
 
         public ProveedorProviderEF()
