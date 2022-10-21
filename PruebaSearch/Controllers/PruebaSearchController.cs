@@ -128,7 +128,7 @@ namespace PruebaSearch.Controllers
 
                 foreach (var proveedor in proveedores)
                 {
-                    var compras = await _comprasService.GetAsync(proveedor.ID.ToString());
+                    var compras = await _comprasService.GetAsync(proveedor.Id.ToString());
                     if (compras == null)
                     {
                         proveedoresSinCompras.Add(proveedor);

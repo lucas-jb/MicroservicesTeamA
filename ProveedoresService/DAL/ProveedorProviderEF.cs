@@ -6,17 +6,18 @@ namespace ProveedoresService.DAL
 {
     public class ProveedorProviderEF : IProveedorProvider
     {
+        readonly DesingTimeProveedorContextFactory factoriaDeContextos = new();
         private readonly ProveedorContext _context;
+
         public ProveedorProviderEF()
         {
-            _context = new ProveedorContext();
+            string[] args = new string[1];
+            _context = factoriaDeContextos.CreateDbContext(args);
         }
-
         public async Task<Proveedor> GetAsync(int id)
         {
             return await _context.Proveedores.FindAsync(id);
         }
-
         public async Task<List<Proveedor>> GetAllAsync()
         {
             return await _context.Proveedores.ToListAsync();
