@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore;
-using ProductoService.Models;
+﻿using ProductoService.Models;
 using ProductoService.Data;
 
 namespace ProductoService.DAL
