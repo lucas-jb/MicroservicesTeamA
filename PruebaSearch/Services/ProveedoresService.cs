@@ -1,7 +1,4 @@
-﻿using Azure;
-using Newtonsoft.Json;
-using Polly;
-using Polly.Retry;
+﻿using Newtonsoft.Json;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Models;
 
@@ -11,15 +8,6 @@ namespace PruebaSearch.Services
 
     public class ProveedoresService : IProveedoresService
     {
-
-        //Remaining Code has been removed for readability
-        RetryPolicy _retryPolicy = Policy
-            .Handle<Exception>()
-            .WaitAndRetry(
-                            3,
-                            retryAttempt => TimeSpan.FromSeconds(5)
-                            );
-
 
         private readonly IHttpClientFactory _httpClientFactory;
 
@@ -32,15 +20,7 @@ namespace PruebaSearch.Services
 
             var client = _httpClientFactory.CreateClient("proveedoresService");
 
-            var response = new HttpResponseMessage();
-            await _retryPolicy.Execute(async () =>
-            {
-
-                var response = client.GetAsync($"api/proveedor/{id}");
-                Console.WriteLine("error");
-
-            });
-
+            var response = await client.GetAsync($"api/proveedor/{id}");
 
             if (response.IsSuccessStatusCode)
             {

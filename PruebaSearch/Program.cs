@@ -1,11 +1,7 @@
 using Polly;
-using Polly.CircuitBreaker;
-using Polly.Retry;
-using PruebaSearch;
+using Polly.Extensions.Http;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
-using System;
-using System.Net.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager Configuration = builder.Configuration;
 
 // Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,28 +25,27 @@ builder.Services.AddScoped<IComprasService, ComprasService>();
 builder.Services.AddHttpClient("proveedoresService", c =>
 {
 
+
     c.BaseAddress = new Uri(Configuration["Services:Proveedores"]);
-    
-});
+
+}).SetHandlerLifetime(TimeSpan.FromSeconds(2))  //Set lifetime to five seconds
+.AddPolicyHandler(GetRetryPolicy());
 
 
 builder.Services.AddHttpClient("productosService", c =>
 {
     c.BaseAddress = new Uri(Configuration["Services:Productos"]);
 
-});
+}).SetHandlerLifetime(TimeSpan.FromSeconds(2))  //Set lifetime to five seconds
+.AddPolicyHandler(GetRetryPolicy());
 
 
 builder.Services.AddHttpClient("comprasService", c =>
 {
     c.BaseAddress = new Uri(Configuration["Services:Compras"]);
 
-});
-
-
-
-
-
+}).SetHandlerLifetime(TimeSpan.FromSeconds(2))  //Set lifetime to five seconds
+.AddPolicyHandler(GetRetryPolicy());
 
 var app = builder.Build();
 
@@ -69,4 +65,11 @@ app.MapControllers();
 
 app.Run();
 
-//prueba3
+static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+{
+    return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+        .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2,
+                                                                    retryAttempt)));
+}

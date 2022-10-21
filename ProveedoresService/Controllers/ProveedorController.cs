@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProveedoresService.DAL;
-using System.Collections.ObjectModel;
-using System;
 
 namespace ProveedoresService.Controllers
 {
