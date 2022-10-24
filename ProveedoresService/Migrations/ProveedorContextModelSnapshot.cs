@@ -47,7 +47,7 @@ namespace ProveedoresService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Proveedores", "ProveedoresSchema");
+                    b.ToTable("Proveedores");
                 });
 #pragma warning restore 612, 618
         }

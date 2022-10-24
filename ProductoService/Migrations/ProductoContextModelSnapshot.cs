@@ -41,7 +41,7 @@ namespace ProductoService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Productos", "ProductosSchema");
+                    b.ToTable("Productos");
                 });
 #pragma warning restore 612, 618
         }

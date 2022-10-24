@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace ProductoService.Migrations
+namespace ProveedoresService.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -10,22 +10,19 @@ namespace ProductoService.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "ProductosSchema");
-
             migrationBuilder.CreateTable(
-                name: "Productos",
-                schema: "ProductosSchema",
+                name: "Proveedores",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false)
+                    Type = table.Column<string>(type: "varchar(100)", nullable: false),
+                    City = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Productos", x => x.Id);
+                    table.PrimaryKey("PK_Proveedores", x => x.Id);
                 });
         }
 
@@ -33,8 +30,7 @@ namespace ProductoService.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Productos",
-                schema: "ProductosSchema");
+                name: "Proveedores");
         }
     }
 }

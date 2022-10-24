@@ -11,7 +11,7 @@ using ProductoService.Data;
 namespace ProductoService.Migrations
 {
     [DbContext(typeof(ProductoContext))]
-    [Migration("20221020061010_InitialCreate")]
+    [Migration("20221024090502_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -44,7 +44,7 @@ namespace ProductoService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Productos", "ProductosSchema");
+                    b.ToTable("Productos");
                 });
 #pragma warning restore 612, 618
         }

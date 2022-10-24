@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IProveedorProvider, ProveedorProvider>();
+builder.Services.AddScoped<IProveedorProvider, ProveedorProviderEF>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

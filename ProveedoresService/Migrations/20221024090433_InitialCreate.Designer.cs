@@ -11,7 +11,7 @@ using ProveedoresService.Data;
 namespace ProveedoresService.Migrations
 {
     [DbContext(typeof(ProveedorContext))]
-    [Migration("20221021093317_InitialCreate")]
+    [Migration("20221024090433_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -50,7 +50,7 @@ namespace ProveedoresService.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Proveedores", "ProveedoresSchema");
+                    b.ToTable("Proveedores");
                 });
 #pragma warning restore 612, 618
         }
