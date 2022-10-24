@@ -8,14 +8,14 @@ namespace ComprasService.DAL
         readonly DesignTimeOrderContextFactory factoriaDeContextos = new();
         private readonly OrderContext _context;
 
-        public Task<ICollection<Order>> GetAsync(int proveedorId)
+        public ComprasProviderEF()
         {
-            throw new NotImplementedException();
+            string[] args = new string[1];
+            _context = factoriaDeContextos.CreateDbContext(args);
         }
-
-        //public async Task<ICollection<Order>> GetAsync(int proveedorId)
-        //{
-        //    return await _context.Orders.FindAsync(proveedorId);
-        //}
+        public async Task<ICollection<Order>> GetAsync(int proveedorId)
+        {
+            return (ICollection<Order>)await _context.Orders.FindAsync(proveedorId);
+        }
     }
 }

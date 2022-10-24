@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComprasService.Models
 {
-    [Table("OrderItem", Schema = "OrderItemsSchema")]
+    [Table("OrderItem")]
     public class OrderItem
     {
         [Column("OrderId", TypeName = "int")]

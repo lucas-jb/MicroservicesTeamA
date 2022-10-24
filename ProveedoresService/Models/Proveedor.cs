@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProveedoresService.Models
 {
-    [Table("Proveedores", Schema = "ProveedoresSchema")]
+    [Table("Proveedores")]
     public class Proveedor
     {
         [Column("Id", TypeName = "int")]

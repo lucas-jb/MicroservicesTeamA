@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ComprasService.Models
 {
-    [Table("Item", Schema = "ItemsSchema")]
+    [Table("Order")]
 
     public class Order
     {

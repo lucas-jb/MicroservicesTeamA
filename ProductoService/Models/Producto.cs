@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProductoService.Models
 {
-    [Table("Productos", Schema = "ProductosSchema")]
+    [Table("Productos")]
     public class Producto
     {
         [Column("Id", TypeName = "int")]
