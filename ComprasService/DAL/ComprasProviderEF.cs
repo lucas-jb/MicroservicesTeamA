@@ -5,18 +5,17 @@ namespace ComprasService.DAL
 {
     public class ComprasProviderEF : IComprasProvider
     {
-        readonly DesignTimeOrderContextFactory factoriaDeContextosOrder = new();
-        readonly DesignTimeOrderItemContextFactory factoriaDeContextosOrderItem = new();
-        private readonly OrderContext _contextOrder;
-        private readonly OrderItemContext _contextOrderItem;
+        readonly DesignTimeOrderContextFactory factoriaDeContextos = new();
+        private readonly OrderContext _context;
 
-        Task<ICollection<Order>> IComprasProvider.GetAsync(int proveedorId)
+        public Task<ICollection<Order>> GetAsync(int proveedorId)
         {
             throw new NotImplementedException();
         }
-        //public Task<ICollection<Order>> GetAsync(int proveedorId)
+
+        //public async Task<ICollection<Order>> GetAsync(int proveedorId)
         //{
-        //    return await _contextOrder.Orders.FindAsync(id);
+        //    return await _context.Orders.FindAsync(proveedorId);
         //}
     }
 }
