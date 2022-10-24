@@ -15,7 +15,8 @@ namespace ComprasService.DAL
         }
         public async Task<ICollection<Order>> GetAsync(int proveedorId)
         {
-            return (ICollection<Order>)await _context.Orders.FindAsync(proveedorId);
+            var orders = await _context.Orders.FindAsync(proveedorId);
+            return await Task.FromResult((ICollection<Order>)orders);
         }
     }
 }
