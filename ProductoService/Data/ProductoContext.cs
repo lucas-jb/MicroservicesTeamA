@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductoService.Models;
-using System;
 
 namespace ProductoService.Data
 {

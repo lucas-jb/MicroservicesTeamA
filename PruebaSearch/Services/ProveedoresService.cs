@@ -4,8 +4,11 @@ using PruebaSearch.Models;
 
 namespace PruebaSearch.Services
 {
+
+
     public class ProveedoresService : IProveedoresService
     {
+
         private readonly IHttpClientFactory _httpClientFactory;
 
         public ProveedoresService(IHttpClientFactory httpClientFactory)
@@ -14,18 +17,23 @@ namespace PruebaSearch.Services
         }
         public async Task<Proveedor?> GetAsync(string id)
         {
+
             var client = _httpClientFactory.CreateClient("proveedoresService");
+
             var response = await client.GetAsync($"api/proveedor/{id}");
+
             if (response.IsSuccessStatusCode)
             {
-                var content = await response.Content.ReadAsStringAsync();
+                var content = response.Content.ReadAsStringAsync();
 
-                var proveedor = JsonConvert.DeserializeObject<Proveedor>(content);
+                var proveedor = JsonConvert.DeserializeObject<Proveedor>(content.Result);
 
                 return proveedor;
             }
-
-            return null;
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<List<Proveedor?>> GetAllAsync()
