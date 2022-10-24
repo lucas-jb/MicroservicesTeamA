@@ -32,12 +32,8 @@ namespace PruebaSearch.Services
             }
             else
             {
-
                 return null;
             }
-
-
-
         }
 
         public async Task<List<Proveedor?>> GetAllAsync()
