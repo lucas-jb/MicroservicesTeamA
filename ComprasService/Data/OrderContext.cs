@@ -9,7 +9,7 @@ namespace ComprasService.Data
         { }
         public OrderContext(DbContextOptions<OrderContext> options) : base(options)
         { }
-        public DbSet<ICollection<Order>> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
     }
