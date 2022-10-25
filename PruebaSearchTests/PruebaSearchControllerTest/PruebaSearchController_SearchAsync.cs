@@ -23,7 +23,11 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
             var actionResult = await PruebasSearchController.SearchAsync(It.IsAny<string>());
             var result = actionResult as BadRequestResult;
 
-            Assert.AreEqual(result.StatusCode, (int)HttpStatusCode.BadRequest);
+            if (result is not null)
+            {
+                Assert.AreEqual(result.StatusCode, (int)HttpStatusCode.BadRequest);
+            }
+           
         }
 
 
@@ -54,33 +58,33 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
         }
 
 
-        [TestMethod]
-        public async Task SearchAsyn_IsNotNullOrWhiteSpace_ThrowsException()
-        {
-            //IList<Order> mockList = new List<Order>()
-            //{
-            //new Order()
-            //    {
-            //    Items = new List<OrderItem>()
-            //        {
-            //            new OrderItem()
-            //        }
-            //    }
-            //};
+        //[TestMethod]
+        //public async Task SearchAsyn_IsNotNullOrWhiteSpace_ThrowsException()
+        //{
+        //    IList<Order> mockList = new List<Order>()
+        //    {
+        //    new Order()
+        //        {
+        //        Items = new List<OrderItem>()
+        //            {
+        //                new OrderItem()
+        //            }
+        //        }
+        //    };
 
-            //var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
+        //    var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
 
-            //_MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).Throws(new Exception());
+        //    _MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).Throws(new Exception());
 
-            //var result = await PruebasSearchController.SearchAsync("1");
+        //    var result = await PruebasSearchController.SearchAsync("1");
 
-            //// Comprobar como es el assert de que ha lanzado una excepcion
-            //// FALTA COMPRAR QUE LANZA UNA EXCEPCION ! ! !
+        //    // Comprobar como es el assert de que ha lanzado una excepcion
+        //    // FALTA COMPRAR QUE LANZA UNA EXCEPCION ! ! !
 
-            //Assert.ThrowsException<Exception>(()=> result);
+        //    Assert.ThrowsException<Exception>(() => result);
 
-            // Comprobar como es el assert de que ha lanzado una excepcion
-// Assert.ThrowsException(result);
-        }
+        //    // Comprobar como es el assert de que ha lanzado una excepcion
+        //    Assert.ThrowsException(result);
+        //}
     }
 }
