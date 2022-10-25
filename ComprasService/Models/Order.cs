@@ -15,8 +15,8 @@ namespace ComprasService.Models
         [Column("OrderDate", TypeName = "datetime")]
         public DateTime OrderDate { get; set; }
 
-        [Column("ProveedorId", TypeName = "int")]
-        public int ProveedorId { get; set; }
+        [Column("ProveedoresId", TypeName = "int")]
+        public int ProveedoresId { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]

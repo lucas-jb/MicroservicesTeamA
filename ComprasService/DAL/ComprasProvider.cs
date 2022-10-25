@@ -10,7 +10,7 @@ namespace ComprasService.DAL
             repo.Add(new Order
             {
                 Id = 1,
-                ProveedorId = 1,
+                ProveedoresId = 1,
                 OrderDate = DateTime.Now.AddMonths(-1),
                 Total = 100,
                 Items = new List<OrderItem>()
@@ -22,7 +22,7 @@ namespace ComprasService.DAL
             repo.Add(new Order
             {
                 Id = 2,
-                ProveedorId = 1,
+                ProveedoresId = 1,
                 OrderDate = DateTime.Now.AddMonths(-1),
                 Total = 100,
                 Items = new List<OrderItem>()
@@ -34,7 +34,7 @@ namespace ComprasService.DAL
             repo.Add(new Order
             {
                 Id = 3,
-                ProveedorId = 2,
+                ProveedoresId = 2,
                 OrderDate = DateTime.Now.AddMonths(-1),
                 Total = 100,
                 Items = new List<OrderItem>()
@@ -46,7 +46,7 @@ namespace ComprasService.DAL
             repo.Add(new Order
             {
                 Id = 4,
-                ProveedorId = 3,
+                ProveedoresId = 3,
                 OrderDate = DateTime.Now.AddMonths(-1),
                 Total = 100,
                 Items = new List<OrderItem>()
@@ -61,7 +61,7 @@ namespace ComprasService.DAL
 
         public async Task<ICollection<Order>> GetAsync(int proveedorId)
         {
-            var orders =  repo.Where(c => c.ProveedorId == proveedorId).ToList();
+            var orders =  repo.Where(c => c.ProveedoresId == proveedorId).ToList();
             return await Task.FromResult((ICollection<Order>)orders);
 
         }
