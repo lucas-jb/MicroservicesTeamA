@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace PruebaSearch.Models
+﻿namespace PruebaSearch.Models
 {
     public class Proveedor
     {

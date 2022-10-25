@@ -1,6 +1,5 @@
 ﻿using ComprasService.Data;
 using ComprasService.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace ComprasService.DAL
 {

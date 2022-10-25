@@ -1,6 +1,5 @@
 using Polly;
 using Polly.Extensions.Http;
-using PruebaSearch;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Services;
 
