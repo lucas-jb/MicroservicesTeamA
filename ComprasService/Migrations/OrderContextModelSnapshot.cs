@@ -35,9 +35,9 @@ namespace ComprasService.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("OrderDate");
 
-                    b.Property<int>("ProveedorId")
+                    b.Property<int>("ProveedoresId")
                         .HasColumnType("int")
-                        .HasColumnName("ProveedorId");
+                        .HasColumnName("ProveedoresId");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,4)")
