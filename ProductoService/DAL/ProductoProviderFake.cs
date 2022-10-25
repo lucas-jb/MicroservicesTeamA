@@ -2,11 +2,11 @@
 
 namespace ProductoService.DAL
 {
-    public class ProductoProvider : IProductoProvider
+    public class ProductoProviderFake : IProductoProvider
     {
         private readonly List<Producto> _repo = new List<Producto>();
 
-        public ProductoProvider()
+        public ProductoProviderFake()
         {
             for (int i = 0; i < 100; i++)
             {
@@ -19,7 +19,7 @@ namespace ProductoService.DAL
             }
         }
 
-        public Task<Producto> GetAsync(int? id)
+        public Task<Producto?> GetAsync(int id)
         {
             var product = _repo.FirstOrDefault(p => p.Id == id);
             return Task.FromResult(product);

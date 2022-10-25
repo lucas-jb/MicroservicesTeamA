@@ -4,6 +4,6 @@ namespace ProductoService.DAL
 {
     public interface IProductoProvider
     {
-        Task<Producto> GetAsync(int? id);
+        Task<Producto?> GetAsync(int id);
     }
 }
