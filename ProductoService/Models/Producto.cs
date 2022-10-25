@@ -12,7 +12,7 @@ namespace ProductoService.Models
 
         [Required]
         [Column("Name", TypeName = "varchar(100)")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]

@@ -18,7 +18,7 @@ namespace ComprasService.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    ProveedorId = table.Column<int>(type: "int", nullable: false),
+                    ProveedoresId = table.Column<int>(type: "int", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(18,4)", nullable: false)
                 },
                 constraints: table =>

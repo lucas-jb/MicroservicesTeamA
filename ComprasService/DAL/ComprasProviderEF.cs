@@ -16,11 +16,7 @@ namespace ComprasService.DAL
         }
         public async Task<ICollection<Order>> GetAsync(int proveedorId)
         {
-            var orders = _context.Orders.Include("Items").Where(c => c.ProveedoresId == proveedorId);
-            foreach (var item in orders)
-            {
-                Console.WriteLine(item);
-            }
+            var orders = _context.Orders.Include("Items").Where(x=>x.ProveedoresId==proveedorId).ToList();
             if (orders != null)
             {
                 return await Task.FromResult((ICollection<Order>)orders);
