@@ -62,10 +62,7 @@ internal class Program
             app.UseSwaggerUI();
         }
         
-        //esto de abajo que pasa ?? ?? ?? 
-
-        //app.UseGlobalExceptionMiddleware();
-
+     
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
