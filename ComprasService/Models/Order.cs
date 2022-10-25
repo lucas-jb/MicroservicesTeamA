@@ -15,7 +15,7 @@ namespace ComprasService.Models
         [Column("OrderDate", TypeName = "datetime")]
         public DateTime OrderDate { get; set; }
 
-        [Column("ProveedorId", TypeName = "int")]
+        [Column("ProveedoresId", TypeName = "int")]
         public int ProveedorId { get; set; }
 
         [Required]
@@ -23,6 +23,6 @@ namespace ComprasService.Models
         [Column("Total", TypeName = "decimal(18,4)")]
         public double Total { get; set; }
 
-        public virtual ICollection<OrderItem> Items { get; set; }
+        public virtual List<OrderItem> Items { get; set; }
     }
 }
