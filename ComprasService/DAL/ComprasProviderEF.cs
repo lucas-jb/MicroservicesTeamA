@@ -1,5 +1,6 @@
 ﻿using ComprasService.Data;
 using ComprasService.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ComprasService.DAL
 {
@@ -15,8 +16,12 @@ namespace ComprasService.DAL
         }
         public async Task<ICollection<Order>> GetAsync(int proveedorId)
         {
-            var orders = await _context.Orders.FindAsync(proveedorId);
-            return await Task.FromResult((ICollection<Order>)orders);
+            var orders = _context.Orders.Include("OrderItem").Where(c => c.ProveedorId == proveedorId).ToList();
+            if (orders != null)
+            { 
+                return orders;
+            }
+            return null;
         }
     }
 }
