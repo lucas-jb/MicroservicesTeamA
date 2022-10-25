@@ -20,9 +20,9 @@ namespace PruebaSearch.Controllers
         }
 
         [HttpGet("proveedores/{proveedorId}")]
-        public async Task<IActionResult> SearchAsync(string proveedorId)
+        public async Task<IActionResult> SearchAsync(int proveedorId)
         {
-            if (string.IsNullOrWhiteSpace(proveedorId))
+            if (proveedorId == null)
             {
                 return BadRequest();
             }
@@ -70,9 +70,9 @@ namespace PruebaSearch.Controllers
         }
 
         [HttpGet("proveedores/{proveedorId}/{month}")]
-        public async Task<IActionResult> SearchMonthAsync(string proveedorId, int month)
+        public async Task<IActionResult> SearchMonthAsync(int proveedorId, int month)
         {
-            if (string.IsNullOrWhiteSpace(proveedorId))
+            if (proveedorId == null)
             {
                 return BadRequest();
             }
@@ -95,7 +95,6 @@ namespace PruebaSearch.Controllers
 
                         item.Producto = product;
                     }
-
                 }
                 
                 var result = new
@@ -128,7 +127,7 @@ namespace PruebaSearch.Controllers
 
                 foreach (var proveedor in proveedores)
                 {
-                    var compras = await _comprasService.GetAsync(proveedor.Id.ToString());
+                    var compras = await _comprasService.GetAsync(proveedor.Id);
                     if (compras == null)
                     {
                         proveedoresSinCompras.Add(proveedor);

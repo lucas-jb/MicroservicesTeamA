@@ -12,10 +12,9 @@ namespace PruebaSearch.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<Producto> GetAsync(string id)
+        public async Task<Producto> GetAsync(int id)
         {
             var client = _httpClientFactory.CreateClient("productosService");
-
             var response = await client.GetAsync($"api/producto/{id}");
 
             if (response.IsSuccessStatusCode)

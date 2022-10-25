@@ -7,7 +7,7 @@ namespace PruebaSearch.Interfaces
     /// </summary>
     public interface IProveedoresService
     {
-        Task<Proveedor?> GetAsync (string id);
+        Task<Proveedor?> GetAsync (int id);
 
         Task<List<Proveedor?>> GetAllAsync();
     }

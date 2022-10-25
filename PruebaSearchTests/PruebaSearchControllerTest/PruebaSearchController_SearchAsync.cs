@@ -20,7 +20,7 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
         public async Task SearchAsyn_IsNullOrWhiteSpace_BadRequest()
         {
             var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
-            var actionResult = await PruebasSearchController.SearchAsync(It.IsAny<string>());
+            var actionResult = await PruebasSearchController.SearchAsync(It.IsAny<int>());
             var result = actionResult as BadRequestResult;
 
             if (result is not null)
@@ -29,8 +29,6 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
             }
            
         }
-
-
 
         //test 2
         [TestMethod]
@@ -48,11 +46,11 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
             };
 
             var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
-            _MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<string>())).ReturnsAsync(new Proveedor());
-            _MockcomprasService.Setup(c => c.GetAsync(It.IsAny<string>())).ReturnsAsync(mockList);
-            _MockproductosService.Setup(c => c.GetAsync(It.IsAny<string>())).ReturnsAsync(new Producto());
+            _MockproveedoresService.Setup(c => c.GetAsync(It.IsAny<int>())).ReturnsAsync(new Proveedor());
+            _MockcomprasService.Setup(c => c.GetAsync(It.IsAny<int>())).ReturnsAsync(mockList);
+            _MockproductosService.Setup(c => c.GetAsync(It.IsAny<int>())).ReturnsAsync(new Producto());
 
-            var result = await PruebasSearchController.SearchAsync("1");
+            var result = await PruebasSearchController.SearchAsync(1);
 
             Assert.IsNotNull(result);
         }

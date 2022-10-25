@@ -4,6 +4,6 @@ namespace PruebaSearch.Interfaces
 {
     public interface IComprasService
     {
-        Task<ICollection<Order>> GetAsync(string proveedorId);
+        Task<ICollection<Order>> GetAsync(int proveedorId);
     }
 }
