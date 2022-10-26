@@ -23,10 +23,9 @@ namespace PruebaSearch.Services
 
                 var product = JsonConvert.DeserializeObject<Producto>(content);
 
-                return product;
+                return product??new Producto() { Id=-1, Name="Producto no encontrado"};
             }
-
-            return null;
+            return new Producto() { Id = -1, Name = "Producto no encontrado" };
         }
     }
 }

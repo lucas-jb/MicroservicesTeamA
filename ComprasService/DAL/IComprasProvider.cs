@@ -4,6 +4,6 @@ namespace ComprasService.DAL
 {
     public interface IComprasProvider
     {
-        Task<ICollection<Order>> GetAsync(int proveedorId);
+        Task<ICollection<Order>?> GetAsync(int proveedorId);
     }
 }

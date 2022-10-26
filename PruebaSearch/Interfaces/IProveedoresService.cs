@@ -9,6 +9,6 @@ namespace PruebaSearch.Interfaces
     {
         Task<Proveedor?> GetAsync (int id);
 
-        Task<List<Proveedor?>> GetAllAsync();
+        Task<List<Proveedor>?> GetAllAsync();
     }
 }

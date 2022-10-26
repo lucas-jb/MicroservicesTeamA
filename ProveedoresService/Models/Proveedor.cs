@@ -12,14 +12,14 @@ namespace ProveedoresService.Models
 
         [Required]
         [Column("Name", TypeName = "varchar(100)")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         [Column("Type", TypeName = "varchar(100)")]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
         [Required]
         [Column("City", TypeName = "varchar(100)")]
-        public string City { get; set; }
+        public string? City { get; set; }
     }
 }

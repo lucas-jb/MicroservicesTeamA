@@ -14,7 +14,7 @@ namespace ProveedoresService.DAL
             string[] args = new string[1];
             _context = factoriaDeContextos.CreateDbContext(args);
         }
-        public async Task<Proveedor> GetAsync(int id)
+        public async Task<Proveedor?> GetAsync(int id)
         {
             return await _context.Proveedores.FindAsync(id);
         }

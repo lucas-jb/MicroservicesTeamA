@@ -16,9 +16,7 @@ namespace PruebaSearch.Services
         public async Task<ICollection<Order>?> GetAsync(int proveedorId)
         {
             var client = _httpClientFactory.CreateClient("comprasService");
-            var cadena = $"/api/compras/{proveedorId}";
-            //$"api/Compras/{proveedorId}"
-            var response = await client.GetAsync(cadena);
+            var response = await client.GetAsync($"/api/compras/{proveedorId}");
             
             if (response.IsSuccessStatusCode)
             {

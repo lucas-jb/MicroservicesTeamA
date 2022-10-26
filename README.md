@@ -18,5 +18,5 @@ La solución está formada por cuatro proyectos:
 
 ## Descripción del funcionamiento
 
-1. Los servicios: Productos, Proveedores y Compras utilizan repositorios fake.
+1. Los servicios: Productos, Proveedores y Compras utilizan un BBDD alojada en Azure.
 2. El proyecto PruebaSearch realiza las peticiones a los otros servicios y presenta los datos.

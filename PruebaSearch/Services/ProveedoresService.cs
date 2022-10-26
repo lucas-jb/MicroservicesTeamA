@@ -35,20 +35,20 @@ namespace PruebaSearch.Services
             }
         }
 
-        public async Task<List<Proveedor?>> GetAllAsync()
+        public async Task<List<Proveedor>?> GetAllAsync()
         {
             var client = _httpClientFactory.CreateClient("proveedoresService");
-            var response = await client.GetAsync($"api/proveedor/GetAll");
+            var response = await client.GetAsync($"/api/proveedor/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
 
                 var proveedores = JsonConvert.DeserializeObject<List<Proveedor>>(content);
 
-                return proveedores;
+                return await Task.Run(()=>proveedores);
             }
 
-            return null;
+            return await Task.Run(()=>new List<Proveedor>() { new Proveedor() { Name="No existe el proveedor"} });
         }
 
     }
