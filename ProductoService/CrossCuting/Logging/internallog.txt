@@ -5941,3 +5941,26 @@
 2022-10-26 11:08:49.7482 Debug FileTarget(Name=logfile): Preparing for new file 'C:\Users\Lucas\source\repos\MicroservicesTeamA\ProductoService\bin\Debug\net6.0\CrossCuting\Logging\2022-10-26_logfile.txt'
 2022-10-26 11:08:49.7482 Debug FileTarget(Name=logfile): Creating file appender: C:\Users\Lucas\source\repos\MicroservicesTeamA\ProductoService\bin\Debug\net6.0\CrossCuting\Logging\2022-10-26_logfile.txt
 2022-10-26 11:08:49.7482 Trace FileTarget(Name=logfile): Opening C:\Users\Lucas\source\repos\MicroservicesTeamA\ProductoService\bin\Debug\net6.0\CrossCuting\Logging\2022-10-26_logfile.txt with allowFileSharedWriting=False
+2022-10-26 15:54:42.0798 Info Message Template Auto Format enabled
+2022-10-26 15:54:42.1228 Debug ScanAssembly('NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c')
+2022-10-26 15:54:42.2431 Debug Setting 'NLog.Targets.FileTarget.name' to 'logfile'
+2022-10-26 15:54:42.2431 Debug Setting 'NLog.Targets.FileTarget.fileName' to 'CrossCuting\Logging\${shortdate}_logfile.txt'
+2022-10-26 15:54:42.2623 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-26 15:54:42.2623 Trace Scanning ShortDateLayoutRenderer 'Layout Renderer: ${shortdate}'
+2022-10-26 15:54:42.2722 Debug Setting 'NLog.Targets.FileTarget.layout' to '${longdate} ${level:uppercase=true} ${message}'
+2022-10-26 15:54:42.2722 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-26 15:54:42.2722 Trace Scanning LongDateLayoutRenderer 'Layout Renderer: ${longdate}'
+2022-10-26 15:54:42.2722 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-26 15:54:42.2722 Trace Scanning LevelLayoutRenderer 'Layout Renderer: ${level}'
+2022-10-26 15:54:42.2722 Trace FindReachableObject<NLog.Internal.IRenderable>:
+2022-10-26 15:54:42.2722 Trace Scanning MessageLayoutRenderer 'Layout Renderer: ${message}'
+2022-10-26 15:54:42.2722 Info Adding target FileTarget(Name=logfile)
+2022-10-26 15:54:42.2722 Debug Registered target logfile: NLog.Targets.FileTarget
+2022-10-26 15:54:42.2722 Trace ParseRulesElement
+2022-10-26 15:54:42.3171 Debug Watching file-filter 'nlog.config' in directory: C:\Users\abosf\Source\Repos\MicroservicesTeamA\ProductoService
+2022-10-26 15:54:42.3206 Debug --- NLog configuration dump ---
+2022-10-26 15:54:42.3206 Debug Targets:
+2022-10-26 15:54:42.3206 Debug FileTarget(Name=logfile)
+2022-10-26 15:54:42.3206 Debug Rules:
+2022-10-26 15:54:42.3206 Debug logNamePattern: (:All) levels: [ Debug Info Warn Error Fatal ] writeTo: [ logfile ]
+2022-10-26 15:54:42.3206 Debug --- End of NLog configuration dump ---

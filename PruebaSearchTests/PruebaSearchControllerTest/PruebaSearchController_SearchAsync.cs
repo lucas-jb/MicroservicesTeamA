@@ -15,20 +15,26 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
         private readonly Mock<IProductosService> _MockproductosService = new();
         private readonly Mock<IComprasService> _MockcomprasService = new();
 
-        //test 1
-        [TestMethod]
-        public async Task SearchAsync_IsNullOrWhiteSpace_BadRequest()
-        {
-            var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
-            var actionResult = await PruebasSearchController.SearchAsync(It.IsAny<int>());
-            var result = actionResult as BadRequestResult;
+        //test 
 
-            if (result is not null)
-            {
-                Assert.AreEqual(result.StatusCode, (int)HttpStatusCode.BadRequest);
-            }
-           
-        }
+        /*
+         * Ya no devuelve BadRequest porque hemos cambiado de string a int
+         */
+
+        //[TestMethod]
+        //public async Task SearchAsync_IsNullOrWhiteSpace_BadRequest()
+        //{
+        //    var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
+        //    var actionResult = await PruebasSearchController.SearchAsync(It.IsAny<int>());
+        //    var result = actionResult as BadRequestResult;
+        //
+        //    if (result is not null)
+        //    {
+        //        Assert.AreEqual(result.StatusCode, (int)HttpStatusCode.BadRequest);
+        //    }
+        //
+        //}
+
 
         //test 2
         [TestMethod]
