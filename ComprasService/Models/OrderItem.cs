@@ -24,7 +24,6 @@ namespace ComprasService.Models
         [DataType(DataType.Currency)]
         [Column("Price", TypeName = "decimal(18,4)")]
         public double Price { get; set; }
-        public virtual Order Order { get; set; }
-
+        //public virtual Order? Order { get; set; }
     }
 }

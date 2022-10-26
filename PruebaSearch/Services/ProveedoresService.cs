@@ -19,7 +19,7 @@ namespace PruebaSearch.Services
         {
 
             var client = _httpClientFactory.CreateClient("proveedoresService");
-            var response = await client.GetAsync($"api/proveedor/{id}");
+            var response = await client.GetAsync($"/api/proveedor/{id}");
 
             if (response.IsSuccessStatusCode)
             {
