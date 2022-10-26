@@ -17,6 +17,7 @@ LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nl
 builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
 
 //Azure KeyVault
+/*
 SecretClientOptions options = new SecretClientOptions()
 {
     Retry =
@@ -34,16 +35,13 @@ string uri = "https://keyvaultteama.vault.azure.net/";
 
 
 var client = new SecretClient(new Uri(uri), new DefaultAzureCredential(), options);
-
-// ! ! ! Esta parte da un error de AuthenticationFailedException 'Azure CLI auth failed... ... ... "
 KeyVaultSecret secret = client.GetSecret("cadenasql2");
 
 string secretValue = secret.Value;
 
-
-
-builder.Services.AddScoped<IProductoProvider, ProductoProviderEF>();
 builder.Services.AddDbContext<ProductoContext>(options => options.UseSqlServer(connectionString));
+*/
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
