@@ -17,7 +17,7 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
 
         //test 1
         [TestMethod]
-        public async Task SearchAsyn_IsNullOrWhiteSpace_BadRequest()
+        public async Task SearchAsync_IsNullOrWhiteSpace_BadRequest()
         {
             var PruebasSearchController = new PruebaSearchController(_MockproveedoresService.Object, _MockproductosService.Object, _MockcomprasService.Object);
             var actionResult = await PruebasSearchController.SearchAsync(It.IsAny<int>());
@@ -32,7 +32,7 @@ namespace PruebaSearchTests.PruebaSearchControllerTest
 
         //test 2
         [TestMethod]
-        public async Task SearchAsyn_IsNotNullOrWhiteSpace_ReturnOkObject()
+        public async Task SearchAsync_IsNotNullOrWhiteSpace_ReturnOkObject()
         {
             IList<Order> mockList = new List<Order>()
             {
