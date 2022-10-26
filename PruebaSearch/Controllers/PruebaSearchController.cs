@@ -116,7 +116,7 @@ namespace PruebaSearch.Controllers
 
                 var proveedoresSinCompras = new Collection<Models.Proveedor>();
 
-                foreach (var proveedor in proveedores)
+                foreach (var proveedor in proveedores??new List<Models.Proveedor>())
                 {
                     if(proveedor is not null) { 
                         var compras = await _comprasService.GetAsync(proveedor.Id);

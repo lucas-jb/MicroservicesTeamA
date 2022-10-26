@@ -35,7 +35,7 @@ namespace PruebaSearch.Services
             }
         }
 
-        public async Task<List<Proveedor?>> GetAllAsync()
+        public async Task<List<Proveedor>?> GetAllAsync()
         {
             var client = _httpClientFactory.CreateClient("proveedoresService");
             var response = await client.GetAsync($"/api/proveedor/GetAll");
@@ -45,10 +45,10 @@ namespace PruebaSearch.Services
 
                 var proveedores = JsonConvert.DeserializeObject<List<Proveedor>>(content);
 
-                return proveedores;
+                return await Task.Run(()=>proveedores);
             }
 
-            return new List<Proveedor?>() { new Proveedor() { Name="No existe el proveedor"} };
+            return await Task.Run(()=>new List<Proveedor>() { new Proveedor() { Name="No existe el proveedor"} });
         }
 
     }

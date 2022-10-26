@@ -4,7 +4,7 @@ namespace ProveedoresService.DAL
 {
     public interface IProveedorProvider
     {
-        Task<Proveedor> GetAsync(int id);
+        Task<Proveedor?> GetAsync(int id);
 
         Task<List<Proveedor>> GetAllAsync();
     }

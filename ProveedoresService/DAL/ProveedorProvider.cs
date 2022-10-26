@@ -17,7 +17,7 @@ namespace ProveedoresService.DAL
             repository.Add(new Proveedor { Id = 8, City = "Madrid", Name = "MediaMarkt Madrid", Type = "Informatica" });
         }
 
-        public async Task<Proveedor> GetAsync(int id)
+        public async Task<Proveedor?> GetAsync(int id)
         {
             var proveedor = repository.FirstOrDefault(p => p.Id == id);
             return await Task.Run(() => proveedor);

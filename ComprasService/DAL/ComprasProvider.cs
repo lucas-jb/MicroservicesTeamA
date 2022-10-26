@@ -59,7 +59,7 @@ namespace ComprasService.DAL
         }
        
 
-        public async Task<ICollection<Order>> GetAsync(int proveedorId)
+        public async Task<ICollection<Order>?> GetAsync(int proveedorId)
         {
             var orders =  repo.Where(c => c.ProveedoresId == proveedorId).ToList();
             return await Task.FromResult((ICollection<Order>)orders);
