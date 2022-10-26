@@ -1,6 +1,7 @@
 ﻿using PruebaSearch.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.ObjectModel;
+using PruebaSearch.Models;
 
 namespace PruebaSearch.Controllers
 {
