@@ -23,6 +23,6 @@ namespace PruebaSearch.Models
         [Column("Total", TypeName = "decimal(18,4)")]
         public double Total { get; set; }
 
-        public virtual List<OrderItem> Items { get; set; }
+        public virtual List<OrderItem>? Items { get; set; }
     }
 }

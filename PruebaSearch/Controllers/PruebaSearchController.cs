@@ -22,24 +22,23 @@ namespace PruebaSearch.Controllers
         [HttpGet("proveedores/{proveedorId}")]
         public async Task<IActionResult> SearchAsync(int proveedorId)
         {
-            if (proveedorId == null)
-            {
-                return BadRequest();
-            }
             try
             {
                 var proveedor = await _proveedoresService.GetAsync(proveedorId);
                 var compras = await _comprasService.GetAsync(proveedorId);
 
-                if (compras != null)
+                if (compras is not null)
                 {
                     foreach (var compra in compras)
                     {
-                        foreach (var item in compra.Items)
+                        if (compra.Items is not null)
                         {
-                            var product = await _productosService.GetAsync(item.ProductoId);
+                            foreach (var item in compra.Items)
+                            {
+                                var product = await _productosService.GetAsync(item.ProductoId);
 
-                            item.Producto = product;
+                                item.Producto = product;
+                            }
                         }
                     }
 
@@ -72,10 +71,6 @@ namespace PruebaSearch.Controllers
         [HttpGet("proveedores/{proveedorId}/{month}")]
         public async Task<IActionResult> SearchMonthAsync(int proveedorId, int month)
         {
-            if (proveedorId == null)
-            {
-                return BadRequest();
-            }
             try
             {
                 var proveedor = await _proveedoresService.GetAsync(proveedorId);
@@ -83,13 +78,13 @@ namespace PruebaSearch.Controllers
 
                 var compras2 = new Collection<Models.Order>();
 
-                foreach (var compra in compras)
+                foreach (var compra in compras??new List<Models.Order>())
                 {
                     if (compra.OrderDate.Month.Equals(month))
                     {
                         compras2.Add(compra);
                     }
-                    foreach (var item in compra.Items)
+                    foreach (var item in compra.Items??new List<Models.OrderItem>())
                     {
                         var product = await _productosService.GetAsync(item.ProductoId);
 
@@ -114,30 +109,27 @@ namespace PruebaSearch.Controllers
         [HttpGet("proveedores/WithOutPurchases")]
         public async Task<IActionResult> SearchProviderWithOutPurchasesAsync()
         {
-           
             try
             {
                 var proveedores = await _proveedoresService.GetAllAsync();
-
-               // var compras = await _comprasService.GetAsync(proveedorId);
-
                 var compras2 = new Collection<Models.Order>();
 
                 var proveedoresSinCompras = new Collection<Models.Proveedor>();
 
                 foreach (var proveedor in proveedores)
                 {
-                    var compras = await _comprasService.GetAsync(proveedor.Id);
-                    if (compras == null)
-                    {
-                        proveedoresSinCompras.Add(proveedor);
+                    if(proveedor is not null) { 
+                        var compras = await _comprasService.GetAsync(proveedor.Id);
+                        if (compras == null)
+                        {
+                            proveedoresSinCompras.Add(proveedor);
+                        }
                     }
                 }
                 return Ok(proveedoresSinCompras);
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

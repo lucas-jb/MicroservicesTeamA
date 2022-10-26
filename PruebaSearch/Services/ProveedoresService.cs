@@ -38,7 +38,7 @@ namespace PruebaSearch.Services
         public async Task<List<Proveedor?>> GetAllAsync()
         {
             var client = _httpClientFactory.CreateClient("proveedoresService");
-            var response = await client.GetAsync($"api/proveedor/GetAll");
+            var response = await client.GetAsync($"/api/proveedor/GetAll");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -48,7 +48,7 @@ namespace PruebaSearch.Services
                 return proveedores;
             }
 
-            return null;
+            return new List<Proveedor?>() { new Proveedor() { Name="No existe el proveedor"} };
         }
 
     }
