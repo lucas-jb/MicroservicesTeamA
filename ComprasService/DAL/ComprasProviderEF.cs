@@ -19,7 +19,7 @@ namespace ComprasService.DAL
             var orders = _context.Orders.Include("Items").Where(x=>x.ProveedoresId==proveedorId).ToList();
             if (orders != null)
             {
-                return await Task.FromResult((ICollection<Order>)orders);
+                return orders;
             }
             return null;
         }

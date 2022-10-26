@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
+using Newtonsoft.Json;
 using PruebaSearch.Interfaces;
 using PruebaSearch.Models;
 
@@ -12,12 +13,13 @@ namespace PruebaSearch.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<ICollection<Order>?> GetAsync(string proveedorId)
+        public async Task<ICollection<Order>?> GetAsync(int proveedorId)
         {
             var client = _httpClientFactory.CreateClient("comprasService");
-
-            var response = await client.GetAsync($"api/compras/{proveedorId}");
-
+            var cadena = $"/api/compras/{proveedorId}";
+            //$"api/Compras/{proveedorId}"
+            var response = await client.GetAsync(cadena);
+            
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

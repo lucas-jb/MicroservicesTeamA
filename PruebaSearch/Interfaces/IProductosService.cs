@@ -4,6 +4,6 @@ namespace PruebaSearch.Interfaces
 {
     public interface IProductosService
     {
-        Task<Producto> GetAsync(string id);
+        Task<Producto> GetAsync(int id);
     }
 }
